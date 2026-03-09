@@ -1,8 +1,11 @@
 eval "$(starship init zsh)"
-source /opt/homebrew/share/zsh-autosuggestions/zsh-autosuggestions.zsh
-source /opt/homebrew/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-FPATH=/opt/homebrew/share/zsh-completions:$FPATH
-FPATH=/opt/homebrew/share/zsh/site-functions:$FPATH
 
-autoload -Uz compinit
-compinit
+source /usr/local/share/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/local/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+FPATH=/usr/local/share/zsh/site-functions:$FPATH
+if type brew &>/dev/null; then
+    FPATH=$(brew --prefix)/share/zsh-completions:$FPATH
+
+    autoload -Uz compinit
+    compinit
+fi
